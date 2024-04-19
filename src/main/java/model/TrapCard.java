@@ -6,9 +6,10 @@ public class TrapCard extends Card {
 	public TrapCard() {
 	}
 
-	public TrapCard(String name) {
+	public TrapCard(String name, String effect) {
 		setName(name);
 		setType("TrapCard");
+		this.effect = effect;
 	}
 
 	public String getEffect() {

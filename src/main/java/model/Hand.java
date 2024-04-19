@@ -26,9 +26,7 @@ public class Hand {
 
 	// Each player has a max hand size of 10
 	public void addCardToHand(Card card) {
-		if (cardsInHand.size() < 11) {
-			cardsInHand.add(card);
-		}
+		cardsInHand.add(card);
 	}
 
 	public void removeCardFromHand(Card card) {

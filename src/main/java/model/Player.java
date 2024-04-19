@@ -9,7 +9,8 @@ public class Player {
 	private Hand hand;
 	private Deck deck;
 	private Field field;
-	private boolean monsterSummoned;
+	private boolean normalSummoned = false;
+	private boolean isDrawed = false;
 
 	public Player() {
 
@@ -21,7 +22,6 @@ public class Player {
 		hand = new Hand(this);
 		deck = new Deck();
 		field = new Field(this);
-		monsterSummoned = false;
 	}
 
 	public String getPlayerName() {
@@ -52,18 +52,37 @@ public class Player {
 		return field;
 	}
 
+	public boolean isNormalSummoned() {
+		return normalSummoned;
+	}
+
+	public void setNormalSummoned(boolean normalSummoned) {
+		this.normalSummoned = normalSummoned;
+	}
+
+	public boolean isDrawed() {
+		return isDrawed;
+	}
+
+	public void setDrawed(boolean isDrawed) {
+		this.isDrawed = isDrawed;
+	}
+
 	// Triệu hồi thông thường
 	public void summonMonster(MonsterCard monsterCard) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2") {
-			field.setMonster(monsterCard);
-			hand.removeCardFromHand(monsterCard);
-			this.monsterSummoned = true;
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
+			if (monsterCard.getLevel() > 4  && field.getMonster().size() < 5 && !this.normalSummoned) {
+				field.setMonster(monsterCard);
+				hand.removeCardFromHand(monsterCard);
+				this.normalSummoned = true;
+			}
+			
 		}
 	}
 
 	// Triệu hồi hiến tế (lv > 4)
 	public void tributeSummon(MonsterCard monsterCard, MonsterCard tribute1, MonsterCard tribute2, String mode) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
 			if (monsterCard.getLevel() > 4 && field.getMonster().size() > 1) {
 				field.removeMonster(tribute1);
 				field.addToGraveyard(tribute1);
@@ -71,7 +90,6 @@ public class Player {
 				field.addToGraveyard(tribute2);
 				field.setMonster(monsterCard);
 				monsterCard.setMode(mode);
-				this.monsterSummoned = true;
 			}
 		}
 	}
@@ -89,17 +107,17 @@ public class Player {
 	public void attack(MonsterCard monsterCard, MonsterCard opponentMonsterCard, Player opponent) {
 		if (monsterCard.getHaveAttacked()) {
 			JOptionPane.showMessageDialog(null, "Monster cannot attack twice in a turn");
-			throw new AlreadyAttackedException("Monster cannot attack twice in a turn");
+//			throw new AlreadyAttackedException("Monster cannot attack twice in a turn");
 		}
-		if (field.getPhase() == "BATTLE PHASE" && monsterCard.getMode() == "DEFENSE") {
+		if (field.getPhase() == "BATTLE" && monsterCard.getMode() == "DEFENSE") {
 			JOptionPane.showMessageDialog(null, "Monster cannot attack if in defense position");
-			throw new DefenseModeException("Monster cannot attack if in defense position");
+//			throw new DefenseModeException("Monster cannot attack if in defense position");
 		}
-		if (field.getPhase() != "BATTLE PHASE") {
+		if (field.getPhase() != "BATTLE") {
 			JOptionPane.showMessageDialog(null, "Monster cannot attack if not in battle phase");
-			throw new WrongPhaseException("Monster cannot attack if not in battle phase");
+//			throw new WrongPhaseException("Monster cannot attack if not in battle phase");
 		}
-		if (field.getPhase() == "BATTLE PHASE" && monsterCard.getMode() == "ATTACK"
+		if (field.getPhase() == "BATTLE" && monsterCard.getMode() == "ATTACK"
 				&& opponentMonsterCard.getMode() == "ATTACK" && !monsterCard.getHaveAttacked()) {
 			monsterCard.setHaveAttacked(true);
 			if (monsterCard.getAttack() >= opponentMonsterCard.getAttack()) {
@@ -113,7 +131,7 @@ public class Player {
 				this.lifepoints = this.lifepoints - (opponentMonsterCard.getAttack() - monsterCard.getAttack());
 			}
 		}
-		if (field.getPhase() == "BATTLE PHASE" && monsterCard.getMode() == "ATTACK"
+		if (field.getPhase() == "BATTLE" && monsterCard.getMode() == "ATTACK"
 				&& opponentMonsterCard.getMode() == "DEFENSE" && !monsterCard.getHaveAttacked()) {
 			monsterCard.setHaveAttacked(true);
 			if (monsterCard.getAttack() >= opponentMonsterCard.getDefence()) {
@@ -134,7 +152,7 @@ public class Player {
 
 	// Đổi dạng tấn công / phòng thủ
 	public boolean switchMonsterMode(MonsterCard monsterCard) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
 			if (monsterCard.getMode() == "ATTACK" && !monsterCard.getSwitchedMode()) {
 				monsterCard.setMode("DEFENSE");
 				monsterCard.setSwitchedMode(true);
@@ -149,7 +167,7 @@ public class Player {
 	}
 
 	public void setSpell(SpellCard spellCard) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2"
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
 				|| field.getPhase() == "BATTLE PHASE") {
 			field.setEffect(spellCard);
 			hand.removeCardFromHand(spellCard);
@@ -157,7 +175,7 @@ public class Player {
 	}
 
 	public void activateSpell(SpellCard spellCard, Card targetCard, Player targetPlayer) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2"
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
 				|| field.getPhase() == "BATTLE PHASE") {
 			if (!spellCard.getFaceDown()) {
 				spellCard.getEffect();
@@ -167,14 +185,14 @@ public class Player {
 	}
 
 	public void setTrap(TrapCard trapCard) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
 			field.setEffect(trapCard);
 			hand.removeCardFromHand(trapCard);
 		}
 	}
 
 	public void activateTrap(TrapCard trapCard, Card targetCard, Player targetPlayer) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2"
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
 				|| field.getPhase() == "BATTLE PHASE") {
 			if (!trapCard.getFaceDown()) {
 				trapCard.getEffect();
@@ -184,7 +202,7 @@ public class Player {
 	}
 
 	public void setField(FieldCard fieldCard) {
-		if (field.getPhase() == "MAIN PHASE 1" || field.getPhase() == "MAIN PHASE 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
 			if (field.getField() != null) {
 				field.addToGraveyard(fieldCard);
 			}
@@ -200,23 +218,24 @@ public class Player {
 	}
 
 	public void endPhase(String phase) {
-		if (phase == "DRAW PHASE") {
-			this.getField().setPhase("STANDBY PHASE");
-		} else if (phase == "STANDBY PHASE") {
-			this.getField().setPhase("MAIN PHASE 1");
-		} else if (phase == "MAIN PHASE 1") {
-			this.getField().setPhase("BATTLE PHASE");
-		} else if (phase == "BATTLE PHASE") {
-			this.getField().setPhase("MAIN PHASE 2");
+		if (phase == "DRAW") {
+			this.getField().setPhase("STANDBY");
+		} else if (phase == "STANDBY") {
+			this.getField().setPhase("MAIN 1");
+		} else if (phase == "MAIN 1") {
+			this.getField().setPhase("BATTLE");
+		} else if (phase == "BATTLE") {
+			this.getField().setPhase("MAIN 2");
 		}
 	}
-	
-	public void endTurn(){
-        this.monsterSummoned = false;
-        this.getField().setPhase("DRAW PHASE");
-        for(int i = 0; i < this.field.getMonster().size(); i++){
-            this.field.getMonster().get(i).setHaveAttacked(false);
-            this.field.getMonster().get(i).setSwitchedMode(false);
-        }
-    }
+
+	public void endTurn() {
+		this.normalSummoned = false;
+		this.isDrawed = false;
+		this.getField().setPhase("DRAW PHASE");
+		for (int i = 0; i < this.field.getMonster().size(); i++) {
+			this.field.getMonster().get(i).setHaveAttacked(false);
+			this.field.getMonster().get(i).setSwitchedMode(false);
+		}
+	}
 }

@@ -42,7 +42,7 @@ public class GUI extends JFrame {
 		ActionListener closeGame = new CloseGameListener(this);
 		
 		cardLocationPanel = new CardLocationPanel();
-		cardLocationPanel.setLocation(28, 7);
+		cardLocationPanel.setLocation(18, 7);
 		getContentPane().add(cardLocationPanel);
 		
 		closeGameButton = new JButton("");

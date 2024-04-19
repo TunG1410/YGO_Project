@@ -14,24 +14,12 @@ public class FinalValues {
 		return noColor;
 	}
 
-	public static void setNoColor(Color noColor) {
-		FinalValues.noColor = noColor;
-	}
-
 	public static Border getNoBorder() {
 		return noBorder;
 	}
 
-	public static void setNoBorder(Border noBorder) {
-		FinalValues.noBorder = noBorder;
-	}
-
 	public static Border getHighLightBorder() {
 		return highLightBorder;
-	}
-
-	public static void setHighLightBorder(Border highLightBorder) {
-		FinalValues.highLightBorder = highLightBorder;
 	}
 
 }

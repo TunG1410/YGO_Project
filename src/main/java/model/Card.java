@@ -54,14 +54,14 @@ abstract public class Card {
 	}
 
 	public ImageIcon getImageSmall() {
-		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " Small.jpg"));
+		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " S.jpg"));
 	}
 
 	public ImageIcon getImageMedium() {
-		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " Medium.jpg"));
+		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " M.jpg"));
 	}
 
 	public ImageIcon getImageLarge() {
-		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " Large.jpg"));
+		return new ImageIcon(this.getClass().getResource("/view/resources/" + name + " L.jpg"));
 	}
 }

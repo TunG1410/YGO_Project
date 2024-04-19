@@ -247,6 +247,12 @@ public class BattlePanel extends JPanel {
 		spellTrapLabel_2_5.setBackground(new Color(0, 0, 0, 100));
 		spellTrapLabel_2_5.setBounds(105, 10, 70, 100);
 		add(spellTrapLabel_2_5);
+		
+		JLabel separatingLineLabel = new JLabel("");
+		separatingLineLabel.setBackground(new Color(255, 0, 0));
+		separatingLineLabel.setOpaque(true);
+		separatingLineLabel.setBounds(10, 240, 700, 10);
+		add(separatingLineLabel);
 
 		JLabel backgroundLabel = new JLabel("");
 		backgroundLabel.setIcon(new ImageIcon(BattlePanel.class.getResource("/view/resources/Battle Background.jpg")));
