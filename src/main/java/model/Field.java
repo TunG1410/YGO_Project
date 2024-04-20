@@ -23,7 +23,7 @@ public class Field {
 		spellZone = new ArrayList<SpellCard>();
 		trapZone = new ArrayList<TrapCard>();
 		graveyard = new ArrayList<Card>();
-		phase = "Draw Phasre";
+		phase = "DRAW";
 	}
 
 	public String getFieldSide() {

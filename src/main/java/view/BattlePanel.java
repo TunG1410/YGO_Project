@@ -255,7 +255,7 @@ public class BattlePanel extends JPanel {
 		add(separatingLineLabel);
 
 		JLabel backgroundLabel = new JLabel("");
-		backgroundLabel.setIcon(new ImageIcon(BattlePanel.class.getResource("/view/resources/Battle Background.jpg")));
+		backgroundLabel.setIcon(new ImageIcon(BattlePanel.class.getResource("/resources/Battle Background.jpg")));
 		backgroundLabel.setBounds(10, 10, 700, 460);
 		this.add(backgroundLabel);
 

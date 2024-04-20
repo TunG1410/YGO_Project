@@ -10,6 +10,8 @@ import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
 import controller.CloseGameListener;
+import model.Game;
+import model.Player;
 
 import javax.swing.border.CompoundBorder;
 import javax.swing.JButton;
@@ -25,9 +27,12 @@ public class GUI extends JFrame {
 	private JButton closeGameButton;
 	private InfoPlayerPanel infoPlayer1Panel;
 	private InfoPlayerPanel infoPlayer2Panel;
+	private Game newGame;
 
 	public GUI() {
-		this.init();
+		newGame = new Game();
+        newGame.startNewGame();
+        this.init();
 		this.setVisible(true);
 	}
 
@@ -41,12 +46,12 @@ public class GUI extends JFrame {
 		
 		ActionListener closeGame = new CloseGameListener(this);
 		
-		cardLocationPanel = new CardLocationPanel();
+		cardLocationPanel = new CardLocationPanel(newGame.getPlayer1(), newGame.getPlayer2());
 		cardLocationPanel.setLocation(18, 7);
 		getContentPane().add(cardLocationPanel);
 		
 		closeGameButton = new JButton("");
-		closeGameButton.setIcon(new ImageIcon(GUI.class.getResource("/view/resources/Close Game.jpg")));
+		closeGameButton.setIcon(new ImageIcon(GUI.class.getResource("/resources/Close Game.jpg")));
 		closeGameButton.addActionListener(closeGame);
 		closeGameButton.setBounds(0, 0, 20, 20);
 		closeGameButton.setFocusPainted(false);
@@ -85,7 +90,7 @@ public class GUI extends JFrame {
 
 		JLabel backgroundLabel = new JLabel("");
 
-		backgroundLabel.setIcon(new ImageIcon(GUI.class.getResource("/view/resources/Background.jpg")));
+		backgroundLabel.setIcon(new ImageIcon(GUI.class.getResource("/resources/Background.jpg")));
 
 		backgroundLabel.setBounds(0, 0, 1536, 864);
 		getContentPane().add(backgroundLabel);

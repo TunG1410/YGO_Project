@@ -24,7 +24,6 @@ public class Hand {
 		return playersHand;
 	}
 
-	// Each player has a max hand size of 10
 	public void addCardToHand(Card card) {
 		cardsInHand.add(card);
 	}

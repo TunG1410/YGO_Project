@@ -90,8 +90,8 @@ public class Game {
 
 		player1.getDeck().shuffleDeck();
 		player2.getDeck().shuffleDeck();
-
-		for (int i = 0; i < 5; i++) {
+		
+		for (int i = 0; i < 5; ++i) {
 			player1.drawCard();
 			player2.drawCard();
 		}
@@ -105,7 +105,7 @@ public class Game {
 			currentPlayer = player2;
 			player2.drawCard();
 		}
-		
+		System.out.println(player1.getHand().getCardsInHand().size());
 	}
 
 }
