@@ -11,6 +11,7 @@ import javax.swing.border.LineBorder;
 import controller.DrawCardListener;
 import controller.SelectCardListener;
 import controller.ShowCardInfoListener;
+import model.Card;
 import model.Player;
 import model.RotateIcon;
 
@@ -36,6 +37,8 @@ public class CardLocationPanel extends JPanel {
 	private JButton drawCardButton_2;
 	private JButton fieldButton_1;
 	private JButton fieldButton_2;
+	private JButton graveyardButton_1;
+	private JButton graveyardButton_2;
 
 	public CardLocationPanel(GUI gui) {
 		this.gui = gui;
@@ -46,7 +49,7 @@ public class CardLocationPanel extends JPanel {
 
 	private void init() {
 		this.setBackground(new Color(0, 0, 0, 0));
-		this.setSize(750, 840);
+		this.setSize(750, 850);
 		setLayout(null);
 
 		drawCardListener = new DrawCardListener(this);
@@ -54,7 +57,7 @@ public class CardLocationPanel extends JPanel {
 		selectCardListener = new SelectCardListener(this);
 
 		handPanelPlayer1 = new JLayeredPane();
-		handPanelPlayer1.setBounds(0, 665, 750, 175);
+		handPanelPlayer1.setBounds(0, 675, 750, 175);
 		this.add(handPanelPlayer1);
 
 		handPanelPlayer2 = new JLayeredPane();
@@ -67,7 +70,6 @@ public class CardLocationPanel extends JPanel {
 			handBtn1.setFocusPainted(false);
 			handBtn1.setVisible(false);
 			handBtn1.addMouseListener(selectCardListener);
-			handBtn1.addMouseListener(showCardInfoListener);
 			handPanelPlayer1.add(handBtn1, Integer.valueOf(i));
 			handPlayer1.add(handBtn1);
 			JButton handBtn2 = new JButton("");
@@ -75,7 +77,6 @@ public class CardLocationPanel extends JPanel {
 			handBtn2.setFocusPainted(false);
 			handBtn2.setVisible(false);
 			handBtn2.addMouseListener(selectCardListener);
-			handBtn2.addMouseListener(showCardInfoListener);
 			handPanelPlayer2.add(handBtn2, Integer.valueOf(i));
 			handPlayer2.add(handBtn2);
 		}
@@ -84,10 +85,12 @@ public class CardLocationPanel extends JPanel {
 			if (currentPlayer == gui.getNewGame().getPlayer1()) {
 				handPlayer1.get(i).setVisible(true);
 				handPlayer1.get(i).setIcon(currentPlayer.getHand().getCardsInHand().get(i).getImageMedium());
+				handPlayer1.get(i).addMouseListener(showCardInfoListener);
 			}
 			if (currentPlayer == gui.getNewGame().getPlayer2()) {
 				handPlayer2.get(i).setVisible(true);
 				handPlayer2.get(i).setIcon(currentPlayer.getHand().getCardsInHand().get(i).getImageMedium());
+				handPlayer2.get(i).addMouseListener(showCardInfoListener);
 			}
 		}
 		for (int i = 0; i < opponentPlayer.getHand().getCardsInHand().size(); i++) {
@@ -103,29 +106,41 @@ public class CardLocationPanel extends JPanel {
 
 		drawCardButton_1 = new JButton("");
 		drawCardButton_1.setIcon(new ImageIcon(CardLocationPanel.class.getResource("/image/Card Background S.jpg")));
-		drawCardButton_1.setBounds(655, 555, 70, 100);
+		drawCardButton_1.setBounds(655, 560, 70, 100);
 		drawCardButton_1.setFocusable(false);
 		drawCardButton_1.addActionListener(drawCardListener);
 		add(drawCardButton_1);
 
 		drawCardButton_2 = new JButton("");
-		drawCardButton_2.setBounds(25, 185, 70, 100);
+		drawCardButton_2.setBounds(25, 190, 70, 100);
 		drawCardButton_2.setIcon(new ImageIcon(CardLocationPanel.class.getResource("/image/Card Background S.jpg")));
 		drawCardButton_2.setFocusable(false);
 		drawCardButton_2.addActionListener(drawCardListener);
 		add(drawCardButton_2);
 
 		fieldButton_1 = new JButton("");
-		fieldButton_1.setBounds(25, 445, 70, 100);
+		fieldButton_1.setBounds(25, 450, 70, 100);
 		fieldButton_1.setFocusable(false);
 		fieldButton_1.setVisible(false);
 		add(fieldButton_1);
 
 		fieldButton_2 = new JButton("");
-		fieldButton_2.setBounds(655, 295, 70, 100);
+		fieldButton_2.setBounds(655, 300, 70, 100);
 		fieldButton_2.setFocusable(false);
 		fieldButton_2.setVisible(false);
 		add(fieldButton_2);
+
+		graveyardButton_1 = new JButton("");
+		graveyardButton_1.setBounds(655, 450, 70, 100);
+		graveyardButton_1.setFocusable(false);
+		graveyardButton_1.setVisible(false);
+		add(graveyardButton_1);
+
+		graveyardButton_2 = new JButton("");
+		graveyardButton_2.setBounds(25, 300, 70, 100);
+		graveyardButton_2.setFocusable(false);
+		graveyardButton_2.setVisible(false);
+		add(graveyardButton_2);
 
 	}
 
@@ -146,6 +161,17 @@ public class CardLocationPanel extends JPanel {
 		RotateIcon ri = new RotateIcon(imageIcon, RotateIcon.Rotate.UPSIDE_DOWN);
 		fieldButton_2.setIcon(ri);
 		fieldButton_2.setVisible(true);
+	}
+
+	public void setGraveyardButton_1(ImageIcon imageIcon) {
+		graveyardButton_1.setIcon(imageIcon);
+		graveyardButton_1.setVisible(true);
+	}
+
+	public void setGraveyardButton_2(ImageIcon imageIcon) {
+		RotateIcon ri = new RotateIcon(imageIcon, RotateIcon.Rotate.UPSIDE_DOWN);
+		graveyardButton_2.setIcon(ri);
+		graveyardButton_2.setVisible(true);
 	}
 
 	public void drawCard(Player player, JButton b) {
@@ -236,21 +262,25 @@ public class CardLocationPanel extends JPanel {
 		for (int i = 0; i < currentPlayer.getHand().getCardsInHand().size(); i++) {
 			if (currentPlayer == gui.getNewGame().getPlayer1()) {
 				handPlayer1.get(i).setIcon(currentPlayer.getHand().getCardsInHand().get(i).getImageMedium());
+				handPlayer1.get(i).addMouseListener(showCardInfoListener);
 			}
 			if (currentPlayer == gui.getNewGame().getPlayer2()) {
 				handPlayer2.get(i).setIcon(currentPlayer.getHand().getCardsInHand().get(i).getImageMedium());
+				handPlayer2.get(i).addMouseListener(showCardInfoListener);
 			}
 		}
 		for (int i = 0; i < opponentPlayer.getHand().getCardsInHand().size(); i++) {
 			if (opponentPlayer == gui.getNewGame().getPlayer1()) {
 				handPlayer1.get(i).setIcon(opponentPlayer.getHand().getCardsInHand().get(i).faceDownImage("M"));
+				handPlayer1.get(i).removeMouseListener(showCardInfoListener);
 			}
 			if (opponentPlayer == gui.getNewGame().getPlayer2()) {
 				handPlayer2.get(i).setIcon(opponentPlayer.getHand().getCardsInHand().get(i).faceDownImage("M"));
+				handPlayer2.get(i).removeMouseListener(showCardInfoListener);
 			}
 		}
 	}
-	
+
 	public void removeCardInHandUI() {
 		for (int i = 0; i < currentPlayer.getHand().getCardsInHand().size(); i++) {
 			if (currentPlayer == gui.getNewGame().getPlayer1()) {
@@ -264,5 +294,14 @@ public class CardLocationPanel extends JPanel {
 		}
 		selectedButton.setBorder(new LineBorder(Color.YELLOW, 0));
 		gui.getNewGame().getCurrentPlayer().setSelectedCard(null);
+	}
+	
+	public void addToGraveyard_UI(Player player, Card card) {
+		if (player == gui.getNewGame().getPlayer1()) {
+			setGraveyardButton_1(card.getImageSmall());
+		}
+		if (player == gui.getNewGame().getPlayer2()) {
+			setGraveyardButton_2(card.getImageSmall());
+		}
 	}
 }

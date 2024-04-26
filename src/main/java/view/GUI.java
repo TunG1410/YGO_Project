@@ -13,9 +13,7 @@ import controller.CloseGameListener;
 import controller.ControlCardListener1;
 import model.FieldCard;
 import model.Game;
-import model.Player;
 
-import javax.swing.border.CompoundBorder;
 import javax.swing.JButton;
 
 public class GUI extends JFrame {
@@ -52,7 +50,7 @@ public class GUI extends JFrame {
 		ControlCardListener1 controlCardListener1 = new ControlCardListener1(this);
 
 		cardLocationPanel = new CardLocationPanel(this);
-		cardLocationPanel.setLocation(393, 12);
+		cardLocationPanel.setLocation(393, 7);
 		getContentPane().add(cardLocationPanel);
 
 		closeGameButton = new JButton("");
@@ -175,6 +173,9 @@ public class GUI extends JFrame {
 
 	public void useField() {
 		FieldCard fieldCard = (FieldCard) this.getNewGame().getCurrentPlayer().getSelectedCard();
+		if (getNewGame().getCurrentPlayer().getField().getField() != null) {
+			cardLocationPanel.addToGraveyard_UI(getNewGame().getCurrentPlayer(), getNewGame().getCurrentPlayer().getField().getField());
+		}
 		this.getNewGame().getCurrentPlayer().setField(fieldCard);
 		if (this.getNewGame().getCurrentPlayer() == this.getNewGame().getPlayer1()) {
 			if (this.getNewGame().getCurrentPlayer().getField().getPhase() == "STANDBY"

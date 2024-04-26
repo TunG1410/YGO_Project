@@ -7,3 +7,5 @@ Spell|Remove Trap|Select 1 face-up Trap Card on the field and destroy it
 Spell|Magic Formula|Equip only to \"Dark Magician\" or \"Dark Magician Girl\". It gains 700 ATK. If this card is sent from the field to the GY: Gain 1000 LP
 Trap|Mirror Force|When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters
 Field|Mountain|Monsters on the field gain 200 ATK/DEF
+Field|Gaia Power|All EARTH monsters gain 500 ATK and lose 400 DEF
+Field|Jurassic World|All Dinosaur-Type monsters gain 300 ATK and DEF
