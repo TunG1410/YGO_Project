@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 import view.CardLocationPanel;
 
 public class DrawCardListener implements ActionListener {
@@ -14,7 +16,8 @@ public class DrawCardListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		cardLocationPanel.drawCard();
+		JButton btn = (JButton) e.getSource();
+		cardLocationPanel.drawCard(cardLocationPanel.getCurrentPlayer(), btn);
 	}
 
 }

@@ -1,14 +1,15 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Field {
 
 	private String fieldSide;
-	private ArrayList<Card> deckZone;
-	private ArrayList<MonsterCard> monsterZone;
-	private ArrayList<SpellCard> spellZone;
-	private ArrayList<TrapCard> trapZone;
+	private List<Card> deckZone;
+	private List<MonsterCard> monsterZone;
+	private List<SpellCard> spellZone;
+	private List<TrapCard> trapZone;
 	private FieldCard fieldZone;
 	private ArrayList<Card> graveyard;
 	private String phase;
@@ -23,7 +24,6 @@ public class Field {
 		spellZone = new ArrayList<SpellCard>();
 		trapZone = new ArrayList<TrapCard>();
 		graveyard = new ArrayList<Card>();
-		phase = "DRAW";
 	}
 
 	public String getFieldSide() {
@@ -35,7 +35,7 @@ public class Field {
 	}
 
 	public ArrayList<Card> getDeck() {
-		return deckZone;
+		return (ArrayList<Card>) deckZone;
 	}
 
 	public void addToDeck(Card card) {
@@ -47,7 +47,7 @@ public class Field {
 	}
 
 	public ArrayList<MonsterCard> getMonster() {
-		return monsterZone;
+		return (ArrayList<MonsterCard>) monsterZone;
 	}
 
 	public void setMonster(MonsterCard monsterCard) {
@@ -61,7 +61,7 @@ public class Field {
 	}
 
 	public ArrayList<SpellCard> getSpell() {
-		return spellZone;
+		return (ArrayList<SpellCard>) spellZone;
 	}
 
 	public void setEffect(SpellCard spellCard) {
@@ -75,7 +75,7 @@ public class Field {
 	}
 	
 	public ArrayList<TrapCard> getTrap() {
-		return trapZone;
+		return (ArrayList<TrapCard>) trapZone;
 	}
 
 	public void setEffect(TrapCard trapCard) {

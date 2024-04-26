@@ -1,5 +1,7 @@
 package model;
 
+import javax.swing.ImageIcon;
+
 public class FieldCard extends Card {
 	private String effect;
 
@@ -22,6 +24,10 @@ public class FieldCard extends Card {
 	}
 
 	public void activateEffect() {
+	}
+
+	public ImageIcon getFieldImage() {
+		return new ImageIcon(this.getClass().getResource("/image/" + getName() + " Field.jpg"));
 	}
 
 }

@@ -1,0 +1,9 @@
+Monster|Dark Magician|7|2500|2100
+Monster|Valkyrion the Magna Warrior|8|3500|3850
+Monster|Alpha The Magnet Warrior|4|1400|1700
+Monster|Beta The Magnet Warrior|4|1700|1600
+Monster|Gamma the Magnet Warrior|4|1500|1800
+Spell|Remove Trap|Select 1 face-up Trap Card on the field and destroy it
+Spell|Magic Formula|Equip only to \"Dark Magician\" or \"Dark Magician Girl\". It gains 700 ATK. If this card is sent from the field to the GY: Gain 1000 LP
+Trap|Mirror Force|When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters
+Field|Mountain|Monsters on the field gain 200 ATK/DEF

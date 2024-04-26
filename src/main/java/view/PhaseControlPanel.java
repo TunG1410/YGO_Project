@@ -5,12 +5,26 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.LineBorder;
+
+import controller.EndPhaseController;
 
 public class PhaseControlPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private GUI gui;
+	private JLabel drawPhaseLabel;
+	private JLabel standbyPhaseLabel;
+	private JLabel mainPhase1Label;
+	private JLabel battlePhaseLabel;
+	private JLabel mainPhase2Label;
+	private JLabel turnLabel;
+	private JButton endPhaseButton;
 
-	public PhaseControlPanel() {
+	public PhaseControlPanel(GUI gui) {
+		this.gui = gui;
 		this.init();
 	}
 
@@ -19,81 +33,101 @@ public class PhaseControlPanel extends JPanel {
 		this.setSize(260, 420);
 		setLayout(null);
 		
-		JLabel drawPhaseLabel_1 = new JLabel("");
-		drawPhaseLabel_1.setOpaque(true);
-		drawPhaseLabel_1.setBackground(new Color(0, 255, 255));
-		drawPhaseLabel_1.setBounds(5, 65, 190, 50);
-		add(drawPhaseLabel_1);
-		
-		JLabel standbyPhaseLabel_1 = new JLabel("");
-		standbyPhaseLabel_1.setOpaque(true);
-		standbyPhaseLabel_1.setBackground(new Color(0, 255, 255));
-		standbyPhaseLabel_1.setBounds(5, 125, 190, 50);
-		add(standbyPhaseLabel_1);
-		
-		JLabel mainPhase1Label_1 = new JLabel("");
-		mainPhase1Label_1.setOpaque(true);
-		mainPhase1Label_1.setBackground(new Color(0, 255, 255));
-		mainPhase1Label_1.setBounds(5, 185, 190, 50);
-		add(mainPhase1Label_1);
-		
-		JLabel battlePhaseLabel_1 = new JLabel("");
-		battlePhaseLabel_1.setOpaque(true);
-		battlePhaseLabel_1.setBackground(new Color(0, 255, 255));
-		battlePhaseLabel_1.setBounds(5, 245, 190, 50);
-		add(battlePhaseLabel_1);
-		
-		JLabel mainPhase2Label_1 = new JLabel("New label");
-		mainPhase2Label_1.setOpaque(true);
-		mainPhase2Label_1.setBackground(Color.CYAN);
-		mainPhase2Label_1.setBounds(5, 305, 190, 50);
-		add(mainPhase2Label_1);
-		
-		JLabel turnLabel = new JLabel("New label");
-		turnLabel.setBackground(new Color(255, 0, 0));
+		EndPhaseController endPhaseController = new EndPhaseController(gui, this);
+
+		drawPhaseLabel = new JLabel("DRAW");
+		drawPhaseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		drawPhaseLabel.setOpaque(true);
+		drawPhaseLabel.setBackground(new Color(154, 205, 50));
+		drawPhaseLabel.setBounds(5, 65, 190, 50);
+		drawPhaseLabel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		add(drawPhaseLabel);
+
+		standbyPhaseLabel = new JLabel("STANDBY");
+		standbyPhaseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		standbyPhaseLabel.setOpaque(true);
+		standbyPhaseLabel.setBackground(new Color(154, 205, 50));
+		standbyPhaseLabel.setBounds(5, 125, 190, 50);
+		standbyPhaseLabel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		add(standbyPhaseLabel);
+
+		mainPhase1Label = new JLabel("MAIN 1");
+		mainPhase1Label.setHorizontalAlignment(SwingConstants.CENTER);
+		mainPhase1Label.setOpaque(true);
+		mainPhase1Label.setBackground(new Color(154, 205, 50));
+		mainPhase1Label.setBounds(5, 185, 190, 50);
+		mainPhase1Label.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		add(mainPhase1Label);
+
+		battlePhaseLabel = new JLabel("BATTLE");
+		battlePhaseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		battlePhaseLabel.setOpaque(true);
+		battlePhaseLabel.setBackground(new Color(154, 205, 50));
+		battlePhaseLabel.setBounds(5, 245, 190, 50);
+		battlePhaseLabel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		add(battlePhaseLabel);
+
+		mainPhase2Label = new JLabel("MAIN 2");
+		mainPhase2Label.setHorizontalAlignment(SwingConstants.CENTER);
+		mainPhase2Label.setOpaque(true);
+		mainPhase2Label.setBackground(new Color(173, 255, 47));
+		mainPhase2Label.setBounds(5, 305, 190, 50);
+		mainPhase2Label.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		add(mainPhase2Label);
+
+		turnLabel = new JLabel("TURN : 1");
+		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		turnLabel.setBackground(new Color(255, 255, 255));
 		turnLabel.setOpaque(true);
 		turnLabel.setBounds(5, 5, 250, 50);
+		turnLabel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
 		add(turnLabel);
-		
-		JLabel drawPhaseLabel = new JLabel("");
-		drawPhaseLabel.setBackground(new Color(255, 0, 0));
-		drawPhaseLabel.setOpaque(true);
-		drawPhaseLabel.setBounds(0, 60, 200, 60);
-		add(drawPhaseLabel);
-		
-		JLabel standbyPhaseLabel = new JLabel("");
-		standbyPhaseLabel.setBackground(new Color(255, 0, 0));
-		standbyPhaseLabel.setOpaque(true);
-		standbyPhaseLabel.setBounds(0, 120, 200, 60);
-		add(standbyPhaseLabel);
-		
-		JLabel mainPhase1Label = new JLabel("");
-		mainPhase1Label.setBackground(new Color(255, 0, 0));
-		mainPhase1Label.setOpaque(true);
-		mainPhase1Label.setBounds(0, 180, 200, 60);
-		add(mainPhase1Label);
-		
-		JLabel battlePhaseLabel = new JLabel("");
-		battlePhaseLabel.setBackground(new Color(255, 0, 0));
-		battlePhaseLabel.setOpaque(true);
-		battlePhaseLabel.setBounds(0, 240, 200, 60);
-		add(battlePhaseLabel);
-		
-		JLabel mainPhase2Label = new JLabel("");
-		mainPhase2Label.setBackground(new Color(255, 0, 0));
-		mainPhase2Label.setOpaque(true);
-		mainPhase2Label.setBounds(0, 300, 200, 60);
-		add(mainPhase2Label);
-		
-		JLabel phaseLabel = new JLabel("New label");
-		phaseLabel.setBackground(new Color(0, 255, 64));
+
+		JLabel phaseLabel = new JLabel("PHASE");
+		phaseLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		phaseLabel.setBackground(new Color(255, 255, 255));
 		phaseLabel.setOpaque(true);
 		phaseLabel.setBounds(205, 65, 50, 290);
+		phaseLabel.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
 		add(phaseLabel);
-		
-		JButton nextPhaseButton = new JButton("New button");
-		nextPhaseButton.setBounds(5, 365, 250, 50);
-		add(nextPhaseButton);
-		
+
+		endPhaseButton = new JButton("END TURN");
+		endPhaseButton.setBounds(5, 365, 250, 50);
+		endPhaseButton.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 2),
+				new LineBorder(new Color(0, 255, 255), 3)));
+		endPhaseButton.addMouseListener(endPhaseController);
+		add(endPhaseButton);
+	}
+
+	public void nextPhase(String phase) {
+		if (phase == "DRAW") {
+			endPhaseButton.setText("END PHASE");
+			mainPhase2Label.setBackground(new Color(154, 205, 50));
+			drawPhaseLabel.setBackground(new Color(173, 255, 47));
+		} else if (phase == "STANDBY") {
+			drawPhaseLabel.setBackground(new Color(154, 205, 50));
+			standbyPhaseLabel.setBackground(new Color(173, 255, 47));
+		} else if (phase == "MAIN 1") {
+			standbyPhaseLabel.setBackground(new Color(154, 205, 50));
+			mainPhase1Label.setBackground(new Color(173, 255, 47));
+		} else if (phase == "BATTLE") {
+			mainPhase1Label.setBackground(new Color(154, 205, 50));
+			battlePhaseLabel.setBackground(new Color(173, 255, 47));
+		} else if (phase == "MAIN 2") {
+			battlePhaseLabel.setBackground(new Color(154, 205, 50));
+			mainPhase2Label.setBackground(new Color(173, 255, 47));
+			endPhaseButton.setText("END TURN");
+		}
+	}
+	
+	public void nextTurn() {
+		turnLabel.setText("TURN : " + gui.getNewGame().getTurn());
 	}
 }

@@ -10,7 +10,8 @@ public class Player {
 	private Deck deck;
 	private Field field;
 	private boolean normalSummoned = false;
-	private boolean isDrawed = false;
+	private boolean isDrawed = true;
+	private Card selectedCard;
 
 	public Player() {
 
@@ -68,15 +69,23 @@ public class Player {
 		this.isDrawed = isDrawed;
 	}
 
+	public Card getSelectedCard() {
+		return selectedCard;
+	}
+
+	public void setSelectedCard(Card selectedCard) {
+		this.selectedCard = selectedCard;
+	}
+
 	// Triệu hồi thông thường
 	public void summonMonster(MonsterCard monsterCard) {
 		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
-			if (monsterCard.getLevel() > 4  && field.getMonster().size() < 5 && !this.normalSummoned) {
+			if (monsterCard.getLevel() > 4 && field.getMonster().size() < 5 && !this.normalSummoned) {
 				field.setMonster(monsterCard);
 				hand.removeCardFromHand(monsterCard);
 				this.normalSummoned = true;
 			}
-			
+
 		}
 	}
 
@@ -167,16 +176,14 @@ public class Player {
 	}
 
 	public void setSpell(SpellCard spellCard) {
-		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
-				|| field.getPhase() == "BATTLE PHASE") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2" || field.getPhase() == "BATTLE PHASE") {
 			field.setEffect(spellCard);
 			hand.removeCardFromHand(spellCard);
 		}
 	}
 
 	public void activateSpell(SpellCard spellCard, Card targetCard, Player targetPlayer) {
-		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
-				|| field.getPhase() == "BATTLE PHASE") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2" || field.getPhase() == "BATTLE PHASE") {
 			if (!spellCard.getFaceDown()) {
 				spellCard.getEffect();
 				field.addToGraveyard(spellCard);
@@ -185,15 +192,14 @@ public class Player {
 	}
 
 	public void setTrap(TrapCard trapCard) {
-		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2" || field.getPhase() == "STANDBY") {
 			field.setEffect(trapCard);
 			hand.removeCardFromHand(trapCard);
 		}
 	}
 
 	public void activateTrap(TrapCard trapCard, Card targetCard, Player targetPlayer) {
-		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2"
-				|| field.getPhase() == "BATTLE PHASE") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2" || field.getPhase() == "BATTLE PHASE") {
 			if (!trapCard.getFaceDown()) {
 				trapCard.getEffect();
 				field.addToGraveyard(trapCard);
@@ -202,23 +208,25 @@ public class Player {
 	}
 
 	public void setField(FieldCard fieldCard) {
-		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2") {
+		if (field.getPhase() == "MAIN 1" || field.getPhase() == "MAIN 2" || field.getPhase() == "STANDBY") {
 			if (field.getField() != null) {
-				field.addToGraveyard(fieldCard);
+				field.addToGraveyard(field.getField());
 			}
 			field.setField(fieldCard);
+			fieldCard.setLocation("In Field");
 			hand.removeCardFromHand(fieldCard);
 		}
 	}
 
 	public Card drawCard() {
 		Card card = deck.drawOneCard();
+		card.setLocation("In Hand");
 		hand.addCardToHand(card);
 		return card;
 	}
 
 	public void endPhase(String phase) {
-		if (phase == "DRAW") {
+		if (phase == "DRAW" && isDrawed) {
 			this.getField().setPhase("STANDBY");
 		} else if (phase == "STANDBY") {
 			this.getField().setPhase("MAIN 1");
@@ -226,16 +234,8 @@ public class Player {
 			this.getField().setPhase("BATTLE");
 		} else if (phase == "BATTLE") {
 			this.getField().setPhase("MAIN 2");
-		}
-	}
-
-	public void endTurn() {
-		this.normalSummoned = false;
-		this.isDrawed = false;
-		this.getField().setPhase("DRAW PHASE");
-		for (int i = 0; i < this.field.getMonster().size(); i++) {
-			this.field.getMonster().get(i).setHaveAttacked(false);
-			this.field.getMonster().get(i).setSwitchedMode(false);
+		} else if (phase == "MAIN 2") {
+			this.getField().setPhase("DRAW");
 		}
 	}
 }
