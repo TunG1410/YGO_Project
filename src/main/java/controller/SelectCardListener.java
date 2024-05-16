@@ -15,8 +15,14 @@ public class SelectCardListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
+		if (!cardLocationPanel.getEnabled()) {
+			return;
+		}
+		
 		Component t = e.getComponent();
-		cardLocationPanel.selectCard(t);
+		cardLocationPanel.selectCardInHand_UI(t);
+		cardLocationPanel.selectCardInField_UI(t);
 	}
 
 	@Override
@@ -33,14 +39,26 @@ public class SelectCardListener implements MouseListener {
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
+		
+		if (!cardLocationPanel.getEnabled()) {
+			return;
+		}
+		
 		Component t = e.getComponent();
-		cardLocationPanel.highlightCard(t, true);
+		cardLocationPanel.highlightCardInField_UI(t, true);
+		cardLocationPanel.highlightCardInHand_UI(t, true);
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		
+		if (!cardLocationPanel.getEnabled()) {
+			return;
+		}
+		
 		Component t = e.getComponent();
-		cardLocationPanel.highlightCard(t, false);
+		cardLocationPanel.highlightCardInField_UI(t, false);
+		cardLocationPanel.highlightCardInHand_UI(t, false);
 	}
 
 }

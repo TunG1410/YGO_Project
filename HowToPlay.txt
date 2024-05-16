@@ -1,0 +1,48 @@
+Dueling
+1. Cả hai người chơi bắt đầu trò chơi với 8000 Điểm gốc. Người chơi đi trước không thể rút bài hoặc tấn công.
+2. Cả hai người chơi rút 5 lá bài khi bắt đầu trò chơi.
+3. Có 5 giai đoạn chính:
+- Draw Phase: Rút 1 lá bài vào đầu mỗi lượt
+- Standby Phase: Giai đoạn chuẩn bị, có thể sử dụng các lá bài đã đặt trên sân
+- Main Phase 1: Triệu hồi quái thú, sử dụng bài phép, ... chuẩn bị cho giai đoạn kế tiếp
+- Battle Phase: Điều khiển quái vật tấn công
+- Main Phase 2: Giống Main Phase 1
+4. Kết thúc các giai đoạn trên lượt chơi của người chơi kết thúc và chuyển đến người tiếp theo
+5. Lặp lại cho đến khi có người thua. Khi Điểm gốc của người chơi đạt đến 0 hoặc không còn lá bài nào, họ sẽ thua trận đấu.
+
+Triệu hồi quái vật
+- Để triệu hồi quái vật, đặt quái vật từ tay xuống sân.
+- Chỉ triệu hồi nếu trên sân có vùng quái vật trống. Tối đa 5 quái vật trên sân cho mỗi người chơi.
+- Chỉ có thể triệu hồi một quái vật lên sân mỗi lượt tại Main Phase 1 hoặc Main Phase 2
+- Quái vật trên 4 sao cần hiến tế 2 quái vật khác để triệu hồi
+
+Sử dụng phép và bẫy
+- Đặt bài phép hoặc bài bẫy từ tay xuống sân.
+- Có thể úp để sử dụng tại thời điểm khác
+- Chỉ sử dụng nếu trên sân có vùng trống.
+- Chỉ có thể sử dụng tại Main Phase 1 hoặc Main Phase 2 hoặc Standby Phase và Battle Phase nếu nó đang được úp trên sân
+
+Sử dụng bài môi trường
+- Đặt bài từ tay xuống sân.
+- Chỉ có thể sử dụng tại Main Phase 1 hoặc Main Phase 2
+- Bài môi trường làm thay đổi môi trường chiến đấu
+
+Chiến đấu
+- Chỉ có thể tấn công bằng quái vật trong giai đoạn chiến đấu.
+- Nếu đối thủ của không điều khiển quái vật, có thể tấn công trực tiếp vào điểm sinh mệnh của họ.
+- Mỗi quái vật chỉ có thể tấn công một lần trong lượt.
+
+Vị trí chiến đấu
+- Quái thú có 2 chế độ là Tấn Công hoặc Phòng Thủ.
+- Chế độ chiến đấu của quái thú xác định chỉ số được sử dụng để tính toán thiệt hại.
+- Chế độ chiến đấu có thể được thay đổi một lần mỗi lượt cho mỗi quái thú trong Main Phase 1 hoặc Main Phase 2.
+- Bạn không thể thay đổi tư thế chiến đấu nó đã được triệu hồi hoặc đã tấn công trong lượt đó.
+
+Tính toán thiệt hại
+- ATK và ATK
+	+ Quái thú có ATK thấp hơn sẽ bị tiêu diệt và người điều khiển nó nhận sát thương bằng mức chênh lệch.
+	+ Nếu chúng có ATK bằng nhau thì cả hai đều bị tiêu diệt.
+- ATK và DEF
+	+ ATK > DEF, quái thú DEF bị tiêu diệt, người điều khiển không nhận sát thương
+	+ ATK < DEF, người điều khiển quái vật tấn công sẽ nhận sát thương bằng mức chênh lệch, không quái thú nào bị tiêu diệt
+	+ ATK = DEF bằng nhau thì không có gì xảy ra.

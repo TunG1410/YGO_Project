@@ -5,7 +5,7 @@ public class MonsterCard extends Card {
 	private int defence;
 	private int level;
 	private String mode;
-	private Boolean haveAttacked;
+	private Boolean attacked;
 	private Boolean switchedMode;
 
 	public MonsterCard() {
@@ -20,7 +20,7 @@ public class MonsterCard extends Card {
 		defence = def;
 		switchedMode = true;
 		mode = "ATTACK";
-		haveAttacked = false;
+		attacked = false;
 	}
 
 	public int getAttack() {
@@ -55,12 +55,12 @@ public class MonsterCard extends Card {
 		this.mode = mode;
 	}
 
-	public Boolean getHaveAttacked() {
-		return haveAttacked;
+	public Boolean isAttacked() {
+		return attacked;
 	}
 
-	public void setHaveAttacked(Boolean haveAttacked) {
-		this.haveAttacked = haveAttacked;
+	public void setAttacked(Boolean haveAttacked) {
+		this.attacked = haveAttacked;
 	}
 
 	public Boolean getSwitchedMode() {

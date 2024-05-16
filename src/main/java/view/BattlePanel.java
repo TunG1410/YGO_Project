@@ -10,7 +10,6 @@ import model.RotateIcon;
 
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class BattlePanel extends JPanel {
@@ -256,24 +255,20 @@ public class BattlePanel extends JPanel {
 		spellTrapLabel_2_5.setBounds(110, 15, 70, 100);
 		add(spellTrapLabel_2_5);
 		
-		JLabel separatingLineLabel = new JLabel("");
-		separatingLineLabel.setBackground(Color.YELLOW);
-		separatingLineLabel.setOpaque(true);
-		separatingLineLabel.setBounds(5, 235, 720, 30);
-		add(separatingLineLabel);
-		
 		bgPlayerLabel_1 = new JLabel("");
 		bgPlayerLabel_1.setBounds(5, 265, 720, 230);
-		bgPlayerLabel_1.setIcon(new ImageIcon(BattlePanel.class.getResource("/image/Battle Background.jpg")));
 		bgPlayerLabel_1.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 5),
 				new LineBorder(new Color(0, 255, 255), 5)));
+		bgPlayerLabel_1.setBackground(new Color(0, 0, 0, 0));
+		bgPlayerLabel_1.setOpaque(true);
 		add(bgPlayerLabel_1);
 		
 		bgPlayerLabel_2 = new JLabel("");
 		bgPlayerLabel_2.setBounds(5, 5, 720, 230);
-		bgPlayerLabel_2.setIcon(new ImageIcon(BattlePanel.class.getResource("/image/Battle Background.jpg")));
 		bgPlayerLabel_2.setBorder(new CompoundBorder(new LineBorder(new Color(0, 206, 209), 5),
 				new LineBorder(new Color(0, 255, 255), 5)));
+		bgPlayerLabel_1.setBackground(new Color(0, 0, 0, 0));
+		bgPlayerLabel_1.setOpaque(true);
 		add(bgPlayerLabel_2);
 
 		JLabel backgroundLabel = new JLabel("");

@@ -1,0 +1,40 @@
+Monster|Blue-Eyes Chaos MAX Dragon|8|4000|0
+Monster|Valkyrion the Magna Warrior|8|3500|3850
+Monster|Valkyrion the Magna Warrior|8|3500|3850
+Monster|Valkyrion the Magna Warrior|8|3500|3850
+Monster|Buster Blader|7|2600|2300
+Monster|Dark Magician|7|2500|2100
+Monster|Summoned Skull|6|2500|1200
+Monster|Dark Magician Girl|6|2000|1700
+Monster|Jack's Knight|5|1900|1000
+Monster|Berfomet|5|1400|1800
+Monster|Big Shield Gardna|4|100|2600
+Monster|Big Shield Gardna|4|100|2600
+Monster|Big Shield Gardna|4|100|2600
+Monster|Gamma the Magnet Warrior|4|1500|1800
+Monster|Gamma the Magnet Warrior|4|1500|1800
+Monster|Gamma the Magnet Warrior|4|1500|1800
+Monster|Electromagnetic Turtle|4|0|1800
+Monster|Electromagnetic Turtle|4|0|1800
+Monster|Electromagnetic Turtle|4|0|1800
+Monster|Beta The Magnet Warrior|4|1700|1600
+Monster|Beta The Magnet Warrior|4|1700|1600
+Monster|Beta The Magnet Warrior|4|1700|1600
+Monster|Alpha The Magnet Warrior|4|1400|1700
+Monster|Alpha The Magnet Warrior|4|1400|1700
+Monster|Alpha The Magnet Warrior|4|1400|1700
+Monster|Queen's Knight|4|1500|1600
+Monster|King's Knight|4|1600|1400
+Monster|Gazelle the King of Mythical Beasts|4|1500|1200
+Monster|Celtic Guardian|4|1400|1200
+Monster|Kuriboh|1|300|200
+Spell|Exchange|Both players reveal their hands and add 1 card from each other's hand to their hand
+Spell|Magic Formula|Equip only to "Dark Magician" or "Dark Magician Girl". It gains 700 ATK. If this card is sent from the field to the GY: Gain 1000 LP
+Spell|Monster Reborn|Target 1 monster in either GY; Special Summon it
+Trap|Dust Tornado|Target 1 Spell/Trap your opponent controls; destroy that target, then you can Set 1 Spell/Trap from your hand
+Trap|Mirror Force|When an opponent's monster declares an attack: Destroy all your opponent's Attack Position monsters
+Field|Mountain|All Dragon, Winged Beast, and Thunder monsters on the field gain 200 ATK/DEF
+Field|Gaia Power|All EARTH monsters gain 500 ATK and lose 400 DEF
+Field|Jurassic World|All Dinosaur-Type monsters gain 300 ATK and DEF
+Field|Umi|All Fish, Sea Serpent, Thunder, and Aqua monsters on the field gain 200 ATK/DEF, also all Machine and Pyro monsters on the field lose 200 ATK/DEF
+Field|Molten Destruction|All FIRE monsters gain 500 ATK and lose 400 DEF

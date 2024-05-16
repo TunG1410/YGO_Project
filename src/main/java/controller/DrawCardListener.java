@@ -16,6 +16,11 @@ public class DrawCardListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		if (!cardLocationPanel.getEnabled()) {
+			return;
+		}
+		
 		JButton btn = (JButton) e.getSource();
 		cardLocationPanel.drawCard(cardLocationPanel.getCurrentPlayer(), btn);
 	}
